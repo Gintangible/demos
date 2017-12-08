@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折线图图组件</title>
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentBase.css">
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentPolyline.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: #000;
+        }
+        .iphone{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 340px;
+            height: 540px;
+            margin: -270px 0 0 -170px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!--用于开发测试 H5ComponentBar 对象（柱状图组件）-->
+    <div class="iphone">
+
+    </div>
+    <script type="text/javascript" src="../js/lib/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../script/H5ComponentBase.js"></script>
+
+    <script type="text/javascript" src="../script/H5ComponentPolyline.js"></script>
+    <script type="text/javascript">
+        var cfg = {
+            type: "poyline",
+//            text: "散点图",
+            width: 530,
+            height: 600,
+            css: {
+                top: 100,
+                opacticy: 1
+            },
+            data: [
+                {
+                    name: "javaScript",
+                    per: .4,
+                    bgc: "#fc1b1e"
+                },
+                {
+                    name: "HTML/CSS",
+                    per: .5,
+                    bgc: "#0cadff"
+                },
+                {
+                    name: "PHP",
+                    per: .4,
+                    bgc: "#272727"
+                }
+            ],
+//            animateIn: {
+//              opacity: 1
+//            },
+//            animateOut: {
+//                opacity: 0
+//            },
+            center: true,
+
+            ctx : {
+                bdcolor: "#aaa",//网格颜色
+                step : 10,
+                lineColor: "#ff8878",//连线颜色
+                bgColor: "rgba( 255, 118, 118, .37 )",//阴影
+            },
+
+        };
+
+        var pointComponent = new H5ComponentPolyline( "polyline", cfg );
+
+        $(".iphone").append(pointComponent);
+
+
+        var leave = true;
+        $("body").on("click",function () {
+            leave = !leave;
+
+            $(".h5_component").trigger( leave ? "onLeave" : "onLoad");
+
+        })
+
+    </script>
+</body>
+</html>

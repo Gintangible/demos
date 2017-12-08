@@ -1,0 +1,25 @@
+@import "define";
+
+//散点图样式
+.h5_component{
+  @extend %pa;
+}
+
+.point{
+  @extend %pa;
+  background: #ccc;
+  border-radius: 50%;
+  .name{
+    @extend %pa;
+    top: 50%;
+    height: 30px;
+    width: 100%;
+    @extend %tac;
+    margin-top: -15px;
+    font-size: rem(22);
+    color: green;
+  }
+  .per{
+    font-size: rem(11);
+  }
+}

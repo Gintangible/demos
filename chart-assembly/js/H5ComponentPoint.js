@@ -1,0 +1,1 @@
+var H5ComponentPoint=function(e,n){var a=new H5ComponentBase(e,n),p=n.data[0].per;return $.each(n.data,function(e,n){var t=$('<div class="point point_'+e+'"></div>'),i=n.per/p*100+"%",s=$('<div class="name">'+n.name+"</div>"),d=$('<div class="per">'+100*n.per+"%</div>");s.append(d),t.append(s),n.project&&t.text(n.project),n.css&&t.css(n.css),t.width(i).height(i),a.append(t)}),a};

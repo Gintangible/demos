@@ -1,0 +1,8 @@
+@import "define";
+
+//基本图文样式
+.h5_component_base{
+  @extend %pa;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}

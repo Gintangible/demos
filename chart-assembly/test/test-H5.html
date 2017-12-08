@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addPage</title>
+    <link rel="stylesheet" href="../css/H5.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentBase.css">
+</head>
+<body>
+    <!-- 测试内容组织功能，以及fullPage页面切换&组件切换 -->
+
+    <!-- 内容组织管理，有可能会加载若干个资源 -->
+
+
+<!-- 基本资源库 -->
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.fullPage.js"></script>
+
+<!-- H5对象资源&管理内容：页-组件 -->
+<script type="text/javascript" src="../script/H5.js"></script>
+<script type="text/javascript" src="../js/H5ComponentBase.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        var h5 = new H5();
+
+        h5
+        .addPage("face")
+            .addComponent("logo",{
+                type: "base",
+                text: "图文组件",
+                bg: "../images/p1_people.png",
+                width: 514,
+                height: 306,
+                css: {
+                    top: 20,
+                    opacity: 0
+                },
+                animateIn:{
+                    top: 80,
+                    opacity: 1
+                },
+                animateOut:{
+                    top: 20,
+                    opacity: 0
+                },
+                center: true
+            })
+            .addComponent("slogan",{text: "slogan"})
+        .addPage("desc")
+            .addComponent("caption",{
+                type: "base",
+                width: 100,
+                height: 100,
+                css: {
+                    top: 50,
+                    opacity: 0,
+                    background: 'blue'
+                },
+                animateIn:{
+                    top: 150,
+                    opacity: 1
+                },
+                animateOut:{
+                    top: 50,
+                    opacity: 0
+                },
+                center: true
+            })
+        .addPage("page-3")
+            .addComponent("caption",{text: "课程方向分布"})
+        .loader();
+
+
+    })
+
+</script>
+
+</body>
+</html>

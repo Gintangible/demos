@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>饼图图组件</title>
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentBase.css">
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentPie.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: #000;
+        }
+        .iphone{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 340px;
+            height: 540px;
+            margin: -270px 0 0 -170px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!--用于开发测试 H5ComponentPie 对象（饼图组件）-->
+    <div class="iphone">
+
+    </div>
+    <script type="text/javascript" src="../js/lib/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../script/H5ComponentBase.js"></script>
+
+    <script type="text/javascript" src="../script/H5ComponentPie.js"></script>
+    <script type="text/javascript">
+        var cfg = {
+            type: "pie",
+//            text: "散点图",
+            width: 400,
+            height: 400,
+            css: {
+                top: 100,
+                opacticy: 1
+            },
+            data: [
+                {
+                    name: "javaScript",
+                    per: .4,
+                    bgc: "#f00"
+                },
+                {
+                    name: "HTML/CSS",
+                    per: .2,
+                    bgc: "#0cadff"
+                },
+                {
+                    name: "PasdfsadfHP",
+                    per: .02,
+                    bgc: "#272727"
+                },
+                {
+                    name: "PasdfasdfHP",
+                    per: .01,
+                    bgc: "yellow"
+                },
+                {
+                    name: "13432423",
+                    per: .02,
+                    bgc: "green"
+                },
+                {
+                    name: "json",
+                    per: .35
+                }
+            ],
+//            animateIn: {
+//              opacity: 1
+//            },
+//            animateOut: {
+//                opacity: 0
+//            },
+            center: true,
+
+//          radar
+            pie : {
+                conColor: "rgba( 255, 118, 118, .37 )",
+                borderColor: "#f1f9ff",
+                bgColor1: "#99c0ff",
+                bgColor2: "#f1f9ff"
+            },
+
+        };
+
+        var pointComponent = new H5ComponentPie( "pie", cfg );
+
+        $(".iphone").append(pointComponent);
+
+
+        var leave = true;
+        $("body").on("click",function () {
+            leave = !leave;
+
+            $(".h5_component").trigger( leave ? "onLeave" : "onLoad");
+
+        }).click();
+
+    </script>
+</body>
+</html>

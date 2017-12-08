@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件思想</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/H5.css">
+    <link rel="stylesheet" href="css/H5_loading.css">
+</head>
+<body>
+    <div class="loading">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+        <div id="rate">0%</div>
+    </div>
+
+
+<!-- 载入所有的组件资源 -->
+<script src="script/lib/jquery-3.2.1.js"></script>
+<script src="script/lib/jquery-ui.min.js"></script>
+<script src="script/lib/jquery.fullPage.js"></script>
+<script src="script/H5_loading.js"></script>
+
+<!-- 加载 h5 组件相关资源 -->
+<script>
+    var res = [
+            "Base", "Bar", "Bar_v", "Point", "Polyline", "Radar", "Pie", "Ring"
+        ];
+
+    var html = [];
+    for( s in res ){
+        html.push( '<link rel="stylesheet" href="css/H5Component'+ res[s] +'.css">' );
+        html.push( '<script src="script/H5Component'+ res[s] +'.js"><\/script>' )
+    }
+    document.write( html.join("") );
+</script>
+
+<!--h5 对象：进行内容管理-->
+<script src="script/H5.js"></script>
+<script>
+    $(function () {
+        var h5 = new H5();
+
+        h5.whenAddPage = function () {
+            this.addComponent( "slide_up", {
+                bg: "images/footer.png",
+                css:{
+                    opacity: 0,
+                    left: 0,
+                    bottom: -20,
+                    width: "100%",
+                    height: "20px",
+                    zIndex: 999
+                },
+                animateIn: { opacity: 1, bottom: "-1px" },
+                animateOut: { opacity: 0, bottom: "-20px" },
+                delay: 500
+            })
+        };
+
+        h5
+        .addPage("face")
+            .addComponent("topic",{
+                type: "base",
+                width: 395,
+                height: 130,
+                center: true,
+                bg: "images/face_logo.png",
+                css: {opacity: 0},
+                animateIn:{top: 100, opacity: 1},
+                animateOut:{top: 0, opacity: 0}
+            })
+            .addComponent("slogan",{
+                width: 365,
+                height: 99,
+                center: true,
+                bg: "images/face_slogan.png",
+                css: {opacity: 0,top: 180},
+                animateIn:{left: "50%", opacity: 1},
+                animateOut:{left: "0%", opacity: 0},
+                delay: 500
+            })
+            .addComponent("face_img_left",{
+                width: 370,
+                height: 493,
+                bg: "images/face_img_left.png",
+                css: {opacity: 0, left: -50, bottom: -50},
+                animateIn:{opacity: 1, left: -50, bottom: 0 },
+                animateOut:{opacity: 0, left: -50, bottom: -50 },
+                delay: 1000
+            })
+            .addComponent("face_img_right",{
+                width: 276,
+                height: 449,
+                bg: "images/face_img_right.png",
+                css: {opacity: 0, right: -50, bottom: -50},
+                animateIn:{opacity: 1, right: -50, bottom: 0 },
+                animateOut:{opacity: 0, right: -50, bottom: -50 },
+                delay: 1000
+            })
+        .addPage()//第2页
+            .addComponent("caption",{
+                text : "核心理念"
+            })
+            .addComponent("text",{
+                text: "IT教育网=只学有用的",
+                width: 500,
+                height: 30,
+                center: true,
+                css: {
+                    opacity: 0,
+                    textAlign: "center",
+                    color: "red",
+                    fontSize: "26px" },
+                animateIn:{opacity: 1, top: 120 },
+                animateOut:{opacity: 0, top: 240}
+            })
+            .addComponent("description",{
+                text: "Web前端开发工程师是一个很新的职业，在国内乃至国际上真正开始受到重视的时间不超过5年。网页是Web1.0时代的产物，那时网站的主要内容都是静态的，用户使用网站也以浏览为主。",
+                width: 481,
+                height: 295,
+                bg: "images/description_bg.gif",
+                center: true,
+                css: {
+                    top: 240,
+                    opacity: 0,
+                    padding: "15px 10px 10px",
+                    lineHeight: "18px",
+                    color: "#fff",
+                    fontSize: "15px",
+                    textAlign: "justify",
+                    boxSizing: "border-box"
+                },
+                animateIn:{opacity: 1, top: 190 },
+                animateOut:{opacity: 0, top: 240},
+                delay: 1000
+            })
+            .addComponent("people",{
+                width: 515,
+                height: 305,
+                center: true,
+                bg: "images/p1_people.png",
+                css: {
+                    opacity: 0,
+                    bottom: 0
+                },
+                animateIn:{opacity: 1, bottom: 40 },
+                animateOut:{opacity: 0, bottom: 0 },
+                delay: 500
+            })
+        .addPage()//第3页
+            .addComponent( "caption", {//polyline
+                text : "课程分布方向",
+            })
+            .addComponent( "polyline", {//polyline
+                type: "polyline",
+                width: 530,
+                height: 300,
+                css: {
+                    top: 100,
+                    opacticy: 1
+                },
+                data: [
+                    { name: "前端开发", per: .4, bgc: "#fc1b1e"},
+                    { name: "移动开发", per: .2},
+                    { name: "后端开发", per: .3, bgc: "blue"},
+                    { name: "图像处理", per: .1}
+                ],
+                animateIn: { opacity: 1, top: 250 },
+                animateOut: { opacity: 0, top: 100 },
+                center: true,
+                ctx : {
+                    bdcolor: "#aaa",//网格颜色
+                    step : 10,
+                    lineColor: "#ff8878",//连线颜色
+                    bgColor: "rgba( 255, 118, 118, .37 )",//阴影
+                }
+            })
+            .addComponent( "msg", {//polyline
+                text : "Polyline组件",
+                css : {
+                    opacity: 0, top: 160,
+                    textAlign: "center", width: "100%", color: "#ff7676"
+                },
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+        .addPage()//第4页
+            .addComponent( "caption", {//pie
+                text : "移动开发课程资源",
+            })
+            .addComponent( "pie", {
+                type: "pie",
+                width: 300,
+                height: 300,
+                center: true,
+                css: {top: 200},
+                data: [
+                    { name: "Android", per: .4, bgc: "#ff7676"},
+                    { name: "IOS", per: .2},
+                    { name: "Coco2d-x", per: .3},
+                    { name: "Unity-3D", per: .1}
+                ],
+                pie : {
+                    conColor: "rgba( 255, 118, 118, .37 )",
+                    borderColor: "#f1f9ff",
+                    bgColor1: "#99c0ff",
+                    bgColor2: "#f1f9ff"
+                }
+            })
+            .addComponent( "msg", {
+                text : "Pie组件",
+                css : {
+                    opacity: 0, bottom: 120,
+                    textAlign: "center", width: "100%", color: "#ff7676"
+                },
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+        .addPage()//第5页
+            .addComponent( "caption", {//bar( bar_v)
+                text : "前端开发课程"
+            })
+            .addComponent( "bar", {
+                type: "bar",
+                width: 530,
+                height: 600,
+                center: true,
+                css: {
+                    top: 100,
+                    opacity: 0
+                },
+                data: [
+                    { name: "JavaScript", per: .4, bgc: "#ff7676" },
+                    { name: "HTML/CSS", per: .2 },
+                    { name: "Jquery", per: .3 },
+                    { name: "BootStrap", per: .1 },
+                    { name: "AngularJs", per: .05 }
+                ],
+                animateIn: { opacity: 1, top: 200 },
+                animateOut: { opacity: 0, top: 100 }
+            } )
+            .addComponent( "msg", {
+                text : "Bar组件%",
+                css : {
+                    opacity: 0, bottom: 120,
+                    textAlign: "center", width: "100%", color: "#ff7676"
+                },
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+        .addPage()//第6页
+            .addComponent( "caption", {// bar_v)
+                text : "前端开发课程"
+            })
+            .addComponent( "bar_v", {
+                type: "bar_v",
+                width: 530,
+                height: 400,
+                center: true,
+                css: {
+                    top: 220,
+                    opacity: 0
+                },
+                data: [
+                    { name: "JavaScript", per: .4, bgc: "#ff7676" },
+                    { name: "HTML/CSS", per: .2 },
+                    { name: "Jquery", per: .3 },
+                    { name: "BootStrap", per: .1 },
+                    { name: "AngularJs", per: .05 }
+                ],
+                animateIn: { opacity: 1, top: 200 },
+                animateOut: { opacity: 0, top: 220 }
+            } )
+            .addComponent( "msg", {
+                text : "Bar_v组件",
+                css : {
+                    opacity: 0, top: 180,
+                    textAlign: "center", width: "100%", color: "#ff7676"
+                },
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+        .addPage()//第7页
+            .addComponent( "caption", {//radar
+                text : "后端开发课程"
+            })
+            .addComponent( "radar", {
+                type: "radar",
+                width: 400,
+                height: 400,
+                center: true,
+                css: {
+                    top: 100,
+                    opacity: 0
+                },
+                data: [
+                    { name: "JavaScript", per: .9, bgc: "#ff7676" },
+                    { name: "HTML/CSS", per: .6 },
+                    { name: "Jquery", per: .8 },
+                    { name: "BootStrap", per: .2 },
+                    { name: "AngularJs", per: .35 }
+                ],
+                animateIn: { opacity: 1, top: 200 },
+                animateOut: { opacity: 0, top: 100 },
+                radar : {
+                    conColor: "rgba( 255, 118, 118, .37 )",
+                    borderColor: "#f1f9ff",
+                    bgColor1: "#99c0ff",
+                    bgColor2: "#f1f9ff"
+                }
+            } )
+            .addComponent( "msg", {
+                text : "Radar组件",
+                css : {
+                    opacity: 0, bottom: 120,
+                    textAlign: "center", width: "100%", color: "#ff7676"
+                },
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+        .addPage()//第8页
+            .addComponent( "caption", {//ring
+                text : "课程报名人数过万"
+            })
+            .addComponent( "ring-all", {
+                type: "ring",
+                width: 300, height: 300, center: true,
+                css: {
+                    top: 120, opacity: 0
+                },
+                data: [ { name: "Ring", per: .7, bgc: "#ff7676" } ],
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+            .addComponent( "msg", {
+                text : "Ring组件",
+                css : {
+                    opacity: 0, top: 260,
+                    textAlign: "center", width: "100%", color: "#ff7676"
+                },
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 },
+                delay: 1800
+            })
+            .addComponent( "ring-1", {
+                type: "ring",
+                width: 140, height: 140,
+                css: {
+                    left: 30, bototm: 110, opacity: 0, fontSize: '12px'
+                },
+                data: [ { name: "前端开发", per: .7, bgc: "#ff7676" }, ],
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+        .addPage()//第9页
+            .addComponent( "caption", {//point
+                text : "课程难度分布"
+            })
+            .addComponent( "point", {
+                type: "point",
+                width: 300, height: 300, center: true,
+                css: {
+                    bottom: "20%"
+                },
+                data: [ { name: "高级", per: .4, css:{ backgroundColor: "#ff7676" } },
+                        { name: "初级", per: .2, css:{ left: '0%', top: '-60%', backgroundColor: "#0cadff" } },
+                        { name: "中级", per: .3, css:{ left: '50%', top: '-120%', backgroundColor: "yellow" } }
+                ],
+                animateIn: { opacity: 1 },
+                animateOut: { opacity: 0 }
+            })
+
+        .addPage("tail")//endpage
+            .addComponent("logo", {
+                width: 359,
+                height: 129,
+                center: true,
+                bg: "images/tail_logo.png",
+                css: { top: 240, opacity: 0 },
+                animateIn:{opacity: 1, top: 210 },
+                animateOut:{opacity: 0, top: 240 }
+            })
+            .addComponent("slogan",
+                {
+                width: 314,
+                height: 46,
+                center: true,
+                bg: "images/tail_slogan.png",
+                css: { top: 280, opacity: 0 },
+                animateIn:{opacity: 1, left: "50%" },
+                animateOut:{opacity: 0, left: 0 },
+                delay: 500
+            })
+            .addComponent("share", {
+                width: 128,
+                height: 120,
+                bg: "images/tail_share.png",
+                css: { opacity: 0, top: 110, right: 110 },
+                animateIn:{opacity: 1, top: 10, right: 10 },
+                animateOut:{opacity: 0, top: 110, right: 110 },
+                delay: 1000
+            })
+            .addComponent("back", {
+                width: 52,
+                height: 50,
+                center: true,
+                bg: "images/tail_back.png",
+                delay: 1000,
+                events :
+                    {
+                        click : function () {
+                            $.fn.fullpage.moveTo( 1 )
+                        }
+                    }
+            })
+
+        .loader( ["images/tail_back.png", "images/tail_share.png", "images/tail_slogan.png"] );
+
+    })
+</script>
+
+</body>
+</html>

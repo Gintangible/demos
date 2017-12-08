@@ -1,0 +1,74 @@
+@import "define";
+
+.h5_component_bar{
+  @extend %pa;
+
+  .line{
+    height:15px;
+    line-height:15px;
+    margin-bottom: 15px;
+    font-size: rem(12);
+  }
+
+  .name{
+    @extend %fl;
+    width: 60px;
+    color: #000;
+    @extend %tac;
+  }
+
+  .rate{
+    @extend %pr;
+    @extend %fl;
+    height: 15px;
+    margin-left: 5px;
+
+    .bg{
+      @extend %pa;
+      left: 0;
+      top:0;
+      width: 0;
+      height:100%;
+      background-color: #99c0ff;
+      border-radius: 2px;
+    }
+
+  }
+
+  .per{
+    @extend %fl;
+    width: 20px;
+    color:#99c0ff;
+    margin-left: 5px;
+    opacity: 0;
+  }
+
+  @at-root #{ & }_load {
+    .rate{
+      .bg{
+        -webkit-transition: all 1s .5s;
+                 transition: all 1s .5s;
+        width: 100%;
+      }
+    }
+
+    .per{
+      -webkit-transition: all 1s 1.5s;
+      transition: all 1s 1.5s;
+      opacity: 1;
+    }
+
+  }
+
+  @at-root #{ & }_leave {
+    .rate {
+      .bg{
+        width: 0;
+      }
+    }
+    .per{
+      opacity: 0;
+    }
+  }
+
+}

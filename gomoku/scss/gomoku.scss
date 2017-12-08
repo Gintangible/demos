@@ -1,0 +1,68 @@
+$width: 450px;
+$red: red;
+$bg: "../img/bg.jpg";
+$color: white;
+$alpha: 0.5;
+@mixin aBtn($btnWidth, $btnHeight, $borRadius){   
+    width: $btnWidth;
+    height: $btnHeight;
+    margin-left: -$btnWidth / 2;
+    border-radius: $borRadius;
+}
+
+@function rem($px){
+    @return $px / 100 + rem;
+}
+
+#main {
+    position: relative;
+    width: $width;
+    height: 450px;
+    margin: 50px auto;
+    box-shadow: -2px -2px 2px #EFEFEF, 5px 5px 5px #B9B9B9;
+    .gameStart {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: url($bg) no-repeat;
+        background-size: cover;
+        background-position: center;
+        #word{
+            display: none;
+            font-style: initial;
+        }
+        #result{
+            display: block;
+            @include aBtn(330px, 180px, 10px);
+            font-family: "Microsoft YaHei";
+            font-size: rem(400);
+            line-height: 180px;
+            text-align: center;
+            background-color: rgba(135, 233, 255, $alpha);
+            border: 2px solid darken(rgb(135, 233, 255), 10%);
+            position: absolute;
+            left: 50%;
+            top: 30px;
+        }
+        .begin {
+            @extend #result;
+            @include aBtn(180px, 50px, 6px);
+            line-height: 50px;
+            font-size: rem(150);
+            color: $color;
+            background-color: rgba(lighten($red,8%),$alpha);
+            border: 2px solid rgba(lighten($red,20%),$alpha);
+            top: 250px;
+            &:hover {
+                background-color: rgba(darken($red,8%),$alpha);
+                border: 2px solid rgba(darken($red,20%),$alpha);
+            }
+        }
+        .quit {
+            @extend .begin;
+            top: 320px;
+        }
+    }
+}

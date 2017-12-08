@@ -1,0 +1,66 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.h5_page{
+    background: url(../images/page_bg.png);
+}
+
+.h5_page_face{
+    background: url(../images/face_bg.png);
+}
+
+.h5_component_name_slogan{
+    animation: rock 2s infinite 2s;
+}
+
+@keyframes rock {
+    0%{ transform: rotate( 0deg ) }
+    5%{ transform: rotate( 3deg ) }
+    10%{ transform: rotate( -4deg ) }
+    15%{ transform: rotate( 3deg ) }
+    20%{ transform: rotate( -2deg ) }
+    25%{ transform: rotate( 1deg ) }
+    30%{ transform: rotate( -1deg ) }
+    70%{ transform: rotate( 0deg ) }
+    100%{ transform: rotate( 0deg ) }
+}
+
+.h5_component_name_caption{
+    width: 283px;
+    height: 160px;
+    line-height: 140px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    background: url(../images/page_caption_bg.png) no-repeat;
+}
+
+
+
+
+
+/*endPage*/
+.h5_component_name_back{
+    top: 30px;
+    animation: back 2s infinite 2s;
+}
+
+@keyframes back {
+    50%{ top: 20px }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
