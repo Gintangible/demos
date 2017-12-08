@@ -2,7 +2,7 @@
   2048游戏
 
 # gomoku
-  简单的五子棋
+  简单的五子棋(for 移动端)
 
 # chart-assembly
   学习如何开发组件，learn from 慕课（组件开发课程）

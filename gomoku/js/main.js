@@ -76,12 +76,17 @@ function init() { //初始化
 		}
 	}
 	var logo = new Image();
-	logo.src = "img/logo_bg.jpg";
 	logo.onload = function() {
 		ctx.drawImage(logo, 0, 0, 450, 450);
-		setTransparent()
+		try{
+			setTransparent()
+		} catch( e ){
+			console.error(e);
+			// throw new Error("need add a server environment")
+		};
 		drawMogokuBoard();
 	}
+	logo.src = "img/logo_bg.jpg";
 }
 
 $(".begin").click(function() {
@@ -111,6 +116,7 @@ var ctx = gomoku.getContext("2d");
 ctx.strokeStyle = "#BFBFBF";
 
 function setTransparent() {
+	// 运行在非服务器端会报跨域问题
 	var imageDatas = ctx.getImageData(0, 0, 450, 450);
 	var dataArray = imageDatas.data;
 	for(var i = 0; i < dataArray.length; i += 4) {
