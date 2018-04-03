@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>百万冲冲冲 拼手速 拼才华 答题赢现金</title>
+    <meta name="keywords" content="百万冲冲冲 拼手速 拼才华 答题赢现金">
+    <link href="http://static.2144.cn/web/theme/module/common/css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="http://static.2144.cn/web/theme/module/common/js/common_sub.js"></script>
+    <link rel="shortcut icon" href="http://static.2144.cn/web/theme/site/images/favicon.ico">
+    <base target='_blank'>
+</head>
+
+<body>
+    <script>top_c();</script>
+    <div class="act-header act-inv-reg">
+        <div class="inner">
+            <h1 class="hidden">百万冲冲冲 拼手速 拼才华 答题赢现金</h1>
+            <div class="act-header_box ">
+                <div class="act-QAs">
+                    <div class="act-QAs_list">
+                        <p>如下有“诗鬼”之称的是哪位诗人?</p>
+                        <div class="act-QAs-answer">
+                            <span>杜甫</span>
+                            <span>李贺</span>
+                            <span>白居易</span>
+                            <span>李白</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>bottom_c();</script>
+
+    <script src="http://static.2144.cn/www/n6-1/js/jquery-1.8.3.min.js"></script>
+    <script src="http://static.2144gy.com/www/ptlogin20150901/js/webilr.js"></script>
+    <script>
+        function getStatistics(callback){
+             $.ajax({
+                type: "GET",
+                url: '//web.2144.cn/onlineAnswer/invite',
+                data: {
+                    inviter: location.search.slice(1).split("&")[0].split("=")[1]
+                },
+                dataType: "jsonp",
+                success: function (data) {
+                    callback && callback();
+                }
+            })
+        }
+
+       
+        $('.act-QAs-answer span').on('click',function(){
+            $(this).addClass('cur').siblings().removeClass('cur');
+            _jsiframeShow(1);
+        })
+
+        if (typeof Login != 'undefined') {
+            Login.actLogin = function () {
+                getStatistics(function(){
+                    window.location.href = 'http://static.2144.cn/act/onlineanswer2/';
+                });
+            };
+        }
+
+
+    </script>
+</body>
+
+</html>
